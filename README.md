@@ -1,4 +1,4 @@
-# Kareem's Knowledge Base (Pro scaffold)
+# My Knowledge Base (Pro scaffold)
 
 Low-cost, **searchable** knowledge system with:
 - Markdown + tags
