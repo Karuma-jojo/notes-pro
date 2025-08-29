@@ -1,0 +1,66 @@
+{
+  "title": "Notes NDJSON schema",
+  "type": "object",
+  "required": [
+    "path",
+    "title"
+  ],
+  "properties": {
+    "path": {
+      "type": "string",
+      "description": "Relative path under repo"
+    },
+    "title": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "tldr": {
+      "type": "string"
+    },
+    "platform": {
+      "type": "string"
+    },
+    "phase": {
+      "type": "string"
+    },
+    "refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "sections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "heading": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "code_blocks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "lang": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

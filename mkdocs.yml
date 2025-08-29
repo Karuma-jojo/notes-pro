@@ -1,0 +1,65 @@
+site_name: Kareem's Knowledge Base
+site_description: Personal catalog for CTFs, programming, math, CS, SWE — with great search.
+theme:
+  name: material
+  features:
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - navigation.instant
+    - navigation.top
+    - navigation.tabs
+plugins:
+  - search
+  - tags
+nav:
+  - Home: index.md
+  - Tags: tags.md
+  - CTF:
+      - Web: ctf/web/_index.md
+      - Crypto: ctf/crypto/_index.md
+      - Pwn: ctf/pwn/_index.md
+      - Reversing: ctf/reversing/_index.md
+      - Forensics: ctf/forensics/_index.md
+      - OSINT: ctf/osint/_index.md
+      - Stego: ctf/stego/_index.md
+  - Notes:
+      - Commands:
+          - Linux: notes/commands/linux/_index.md
+          - Windows: notes/commands/windows/_index.md
+          - Docker: notes/commands/docker/_index.md
+          - Kubernetes: notes/commands/kubernetes/_index.md
+          - Cloud: notes/commands/cloud/_index.md
+  - SWE:
+      - Tooling: swe/tooling/_index.md
+      - Testing: swe/testing/_index.md
+      - Python: swe/python/_index.md
+      - C++: swe/cpp/_index.md
+      - Algorithms: swe/algorithms/_index.md
+      - Data Structures: swe/data-structures/_index.md
+  - Math:
+      - Calculus: math/calculus/_index.md
+      - Linear Algebra: math/linear-algebra/_index.md
+      - Probability: math/probability/_index.md
+      - Statistics: math/statistics/_index.md
+      - Discrete: math/discrete/_index.md
+  - AI:
+      - ML: ai/ml/_index.md
+      - DL: ai/dl/_index.md
+      - NLP: ai/nlp/_index.md
+      - RL: ai/rl/_index.md
+      - CV: ai/cv/_index.md
+      - Optimization: ai/optimization/_index.md
+  - Kaggle:
+      - Competitions: kaggle/competitions/_index.md
+      - EDA: kaggle/eda/_index.md
+      - Feature Engineering: kaggle/feature-engineering/_index.md
+      - Models: kaggle/models/_index.md
+markdown_extensions:
+  - admonition
+  - toc:
+      permalink: true
+  - codehilite
+  - footnotes
+extra:
+  generator: false
