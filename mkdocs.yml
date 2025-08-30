@@ -16,7 +16,9 @@ nav:
   - Home: index.md
   - Tags: tags.md
   - CTF:
-      - Web: ctf/web/_index.md
+      - Web: 
+          - Overview: ctf/web/_index.md
+          - Boiler CTF (Joomla + SUID): ctf/web/boiler-ctf/README.md
       - Crypto: ctf/crypto/_index.md
       - Pwn: ctf/pwn/_index.md
       - Reversing: ctf/reversing/_index.md
