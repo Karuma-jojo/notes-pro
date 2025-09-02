@@ -1,0 +1,23 @@
+# How to publish to your Git repo (MkDocs Material)
+
+# 1) Copy the page into your repo:
+mkdir -p ~/kareem-notes-pro/docs/ctf/web/easypeasy-ctf
+cp "/mnt/data/docs/ctf/web/easypeasy-ctf/README.md" ~/kareem-notes-pro/docs/ctf/web/easypeasy-ctf/README.md
+
+# 2) Add a nav entry in mkdocs.yml under the CTF → Web section, e.g.:
+#   - Web:
+#       - Overview: ctf/web/_index.md
+#       - Boiler CTF (Joomla + SUID): ctf/web/boiler-ctf/README.md
+#       - EasyPeasy (Web): ctf/web/easypeasy-ctf/README.md
+
+# 3) (Optional) Copy any artifacts you want to embed later:
+# cp -r /home/makar/CTFs/easypeasyctf/* ~/kareem-notes-pro/docs/ctf/web/easypeasy-ctf/
+
+# 4) Build & serve locally to preview:
+cd ~/kareem-notes-pro
+mkdocs serve -a 0.0.0.0:8000
+
+# 5) Commit & push:
+git add docs/ctf/web/easypeasy-ctf/README.md mkdocs.yml
+git commit -m "Add EasyPeasy CTF ultra-educational walkthrough"
+git push origin main

